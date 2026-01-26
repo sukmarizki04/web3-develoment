@@ -91,4 +91,28 @@ contract Coin {
         
         
     }
+
+
+    //Making Payment 
+    function contructPaymentMessage(contractAddress, amount) {
+        return abi.soliditySH3(
+            ["address", "uint256"],
+            ["contractAddress, amount]
+        );
+    }
+
+    function signMessage(messsage, callback) {
+        web3.eth.personal.sign(
+            "ox" + message.toString("hex")
+            web3.eth.defaultAccount, callback
+        );
+    }
+    //contractAddress is used to prevent cross-contract replay attacks 
+    //amount , in wei, how much ether should be send 
+    function signPayment(contractAddress, amount , callback){
+        var message = contractPaymentMessage(contractAddress, amount);
+        signMessage(message,callback);
+    }
  }
+
+ 
