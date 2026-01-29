@@ -24,6 +24,8 @@ contract simplePaymentChannel is Frozable {
     /// the recipient can close the chanel at any time by presenting a
     /// signed  amound from the sender. the recipient will be sent that amount,
     // and the remainder will go back to the sender
+
+    
     function close(uint256 amount, bytes memory signature) external notfrozen {
         require(msg.sender == recipient);
         require(isValidSignature(amount, signature));
